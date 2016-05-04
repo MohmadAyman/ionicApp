@@ -1,0 +1,24 @@
+  <ion-view ng-controller="solrCreatorCtrl">
+  	<ion-content>
+  	<div align="center" ng-repeat="name in menu">
+  	<button class="button button-block button-dark">
+    {{name.name}}
+  		</button>
+  		<ul>
+  			<li class="row" ng-repeat='creator in name.menu' ng-click='toggleActive(creator)' ng-class="{isActive:creator.isActive}">
+  				<span align="left" class='col col-75'>{{creator.name}}</span>
+  				<span align="left" class='col'>{{creator.price}}</span>
+  				<br>
+  			</li>             
+  		</ul>
+  	</div>    
+  	<div >
+  	<div align="right" class='col col-90'>{{total()}} L.E.</div>
+  		<button type="submit" ng-click="placeOrder()" class="button button-block button-balanced" ui-sref="home.signup">Order</button>
+  		<br>
+  		<br>
+  		<br>
+  	</div>     
+  </div>
+  </ion-content>
+</ion-view>
