@@ -5,6 +5,6 @@ angular.module('eliteApp')
 })
  
 .constant('API_ENDPOINT', {
-  url: 'http://localhost:5082/'
+  url: 'http://127.0.0.1:5082'
   //  For a simulator use: url: 'http://127.0.0.1:8080/api'
 });
