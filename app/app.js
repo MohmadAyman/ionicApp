@@ -11,6 +11,14 @@ var app = angular.module("eliteApp", ['ionic','btford.socket-io'])
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+    var push = new Ionic.Push({
+      "debug": true
+    });
+
+    push.register(function(token) {
+      console.log("Device token:",token.token);
+      push.saveToken(token);  // persist the token in the Ionic Platform
+    });
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
@@ -20,105 +28,125 @@ var app = angular.module("eliteApp", ['ionic','btford.socket-io'])
     }
   });
 })
+  //   $ionicPlatform.ready(function() {
+  //     var push = new Ionic.Push({
+  //       "debug": true
+  //     });
 
-.config(function($stateProvider, $urlRouterProvider) {
+  //     push.register(function(token) {
+  //       console.log("Device token:",token.token);
+  //       push.saveToken(token);  // persist the token in the Ionic Platform
+  //     });
+  //   });
+  // })
 
-  $stateProvider
+  .config(function($stateProvider, $urlRouterProvider) {
 
-  .state('outside', {
-    url: '/outside',
-    abstract: true,
-    templateUrl: 'app/home/outside.html'
-  })
-  .state('outside.login', {
-    url: '/login',
-    templateUrl: 'app/home/signin.html',
-    controller: 'LoginCtrl'
-  })
-  .state('outside.register', {
-    url: '/register',
-    templateUrl: 'app/home/register.html',
-    controller: 'RegisterCtrl'
-  })
-  .state('inside', {
-    url: '/inside',
-    templateUrl: 'app/home/inside.html',
-    controller: 'InsideCtrl'
-  })
+    $stateProvider
 
+    .state('outside', {
+      url: '/outside',
+      abstract: true,
+      templateUrl: 'app/home/outside.html'
+    })
+    .state('outside.login', {
+      url: '/login',
+      templateUrl: 'app/home/signin.html',
+      controller: 'LoginCtrl'
+    })
+    .state('outside.register', {
+      url: '/register',
+      templateUrl: 'app/home/register.html',
+      controller: 'RegisterCtrl'
+    })
+    .state('inside', {
+      url: '/inside',
+      abstract: true,
+      templateUrl: 'app/home/inside.html',
+    })
+    .state('inside.user', {
+      url: '/user',
+      templateUrl: 'app/places/hamzaPlace.html',
+      controller: 'solrCreatorCtrl'
+    })
+    .state('inside.client', {
+      url: '/client',
+      templateUrl: 'app/clients/hamzaClient.html',
+      controller: 'client'
+    })
 
-  .state('home', {
-    abstract: true,
-    url: "/home",
-    templateUrl: "app/home/home.html"
-  })
+    .state('home', {
+      abstract: true,
+      url: "/home",
+      templateUrl: "app/home/home.html"
+    })
 
-  .state('home.login', {
-    url: "/login",
-    views: {
-      "tab-auth": {
-        templateUrl: "app/home/login.html"
+    .state('home.login', {
+      url: "/login",
+      views: {
+        "tab-auth": {
+          templateUrl: "app/home/login.html"
+        }
       }
-    }
-  })
-  .state('home.signup', {
-    url: "/signup",
-    views: {
-      "tab-auth": {
-        templateUrl: "app/home/signup.html"
+    })
+    .state('home.signup', {
+      url: "/signup",
+      views: {
+        "tab-auth": {
+          templateUrl: "app/home/signup.html"
+        }
       }
-    }
-  })
+    })
 
-  
-  .state('home.places', {
-    url: "/places",
-    views: {
-      "tab-auth": {
-        templateUrl: "app/home/places.html"
+
+    .state('home.places', {
+      url: "/places",
+      views: {
+        "tab-auth": {
+          templateUrl: "app/home/places.html"
+        }
       }
-    }
-  })
+    })
 
-  .state('home.hamza', {
-    url: "/hamza",
-    views: {
-      'tab-auth': {
-        templateUrl: "app/places/hamzaPlace.html"
+    .state('home.hamza', {
+      url: "/hamza",
+      views: {
+        'tab-auth': {
+          templateUrl: "app/places/hamzaPlace.html"
+        }
       }
-    }
-  })
+    })
 
-  .state('places', {
-    abstract: true,
-    url: "/places",
-    templateUrl: "app/layout/places-layout.html"
-  })
+    .state('places', {
+      abstract: true,
+      url: "/places",
+      templateUrl: "app/layout/places-layout.html"
+    })
 
-  .state('places.hamza', {
-    url: "/hamza",
-    views: {
-      'mainContent': {
-        templateUrl: "app/places/hamzaPlace.html"
+    .state('places.hamza', {
+      url: "/hamza",
+      views: {
+        'mainContent': {
+          templateUrl: "app/places/hamzaPlace.html"
+        }
       }
-    }
-  })
+    })
 
-  .state('clients', {
-    abstract: true,
-    url: "/clients",
-    templateUrl: "app/layout/places-layout.html"
-  })
+    .state('clients', {
+      abstract: true,
+      url: "/clients",
+      templateUrl: "app/layout/places-layout.html"
+    })
 
-  .state('clients.hamza', {
-    url: "/hamza",
-    views: {
-      'mainContent': {
-        templateUrl: "app/clients/hamzaClient.html"
+    .state('clients.hamza', {
+      url: "/hamza",
+      views: {
+        'mainContent': {
+          templateUrl: "app/clients/hamzaClient.html"
+        }
       }
-    }
-  })
+    })
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('outside/register');
+    $urlRouterProvider.otherwise('outside/login');
   });

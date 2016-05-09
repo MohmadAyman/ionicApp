@@ -1,19 +1,17 @@
-    <ion-view ng-controller="client">
+    <ion-view title="Client Hamza">
   	<ion-content>
-    {{names[0]}}  
   	<div align="center" ng-repeat="name in menu">
   	<button class="button button-block button-dark">
             Orders 
         </button>
-        {{Orders[0][0].name}}
-        {{try.name}}
-  		<ul>
+        {{recivedOrder}}
+  		<!-- <ul>
   			<li class="row"  ng-repeat='creator in Orders' ng-click='toggleActive(creator)' ng-class="{isActive:creator.isActive}">
   				<span align="left" class='col col-75'>{{creator.name}}</span>
   				<span align="left" class='col'>{{creator.price}}</span>
   				<br>
   			</li>             
-  		</ul>
+  		</ul> -->
   	</div>    
   	<div >
   	<div align="right" class='col col-90'>{{total()}} L.E.</div>

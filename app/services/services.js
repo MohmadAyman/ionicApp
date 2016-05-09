@@ -46,7 +46,7 @@ angular.module('eliteApp')
  
   var login = function(user) {
     return $q(function(resolve, reject) {
-      $http.post(API_ENDPOINT.url + '/auth/signin', user).then(function(result) {
+      $http.post(API_ENDPOINT.url + '/signin', user).then(function(result) {
         if (result.data.success) {
           storeUserCredentials(result.data.token);
           resolve(result.data.msg);

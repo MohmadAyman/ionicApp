@@ -1,54 +1,3 @@
-// (function () {
-//   'use strict';
-
-// angular.module('eliteApp').controller('client', ['$scope',socket,client]);
-
-
-// var Facets = {};
-// var sandwitches = [{
-//   name: 'Batates',
-//   price: '5'
-// },
-// {
-//   name: 'Batates',
-//   price: '5'
-// },{
-//   name: 'Batates',
-//   price: '5'
-// },{
-//   name: 'Shawrma',
-//   price: '5'
-// }];
-// Facets.menu = [{name: 'sandwitches' ,menu: sandwitches},{name: 'Pizza' ,menu: sandwitches},
-// {name: 'Sori' ,menu: sandwitches},{name: 'Drinks' ,menu: sandwitches},{name: 'Drinks' ,menu: sandwitches}];
-
-// function client($scope){
-
-//  io.connect('http://localhost:5082');
-
-//  $scope.menu = Facets.menu;
-//  $scope.total = function(){
-//   var total = 0;
-//     // Use the angular forEach helper method to
-//     // loop through the services array:
-//     angular.forEach($scope.menu, function(s){
-//       angular.forEach(s.menu, function(b){
-//         if (b.isActive){
-//           total+= Number(b.price);
-//         }
-//       });
-//     });
-//     return total;
-//   };
-//   $scope.data = Facets.menu;
-//   $scope.data.filterLimit = 4;
-
-//   $scope.toggleActive = function(creator){
-//     creator.isActive = !creator.isActive;
-//   }  
-// }
-
-// })();
 'use strict';
 app.controller('client',function($scope,$timeout,socket) {
   $scope.services = [];
@@ -67,12 +16,12 @@ app.controller('client',function($scope,$timeout,socket) {
 // I Will recive the order with a fomat as follows
   socket.on('reciveOrder', function (data) {
   $scope.recivedOrder= data;
-    $scope.names.push(data[0].name);
-      $scope.recivedOrder.splice(0, 1);
-      $scope.Orders.push(data);
-      console.log($scope.Orders)
-    console.log('recived  order');
-    upView();
+    // $scope.names.push(data[0].name);
+    //   $scope.recivedOrder.splice(0, 1);
+    //   $scope.Orders.push(data);
+    //   console.log($scope.Orders)
+    // console.log('recived  order');
+    // upView();
   });
 
     socket.on('order', function (data) {
