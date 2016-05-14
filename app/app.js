@@ -14,7 +14,6 @@ var app = angular.module("eliteApp", ['ionic','btford.socket-io'])
     var push = new Ionic.Push({
       "debug": true
     });
-
     push.register(function(token) {
       console.log("Device token:",token.token);
       push.saveToken(token);  // persist the token in the Ionic Platform
