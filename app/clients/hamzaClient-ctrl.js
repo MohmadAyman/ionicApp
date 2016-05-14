@@ -67,8 +67,8 @@ app.controller('client',function($scope,$timeout,socket) {
 // I Will recive the order with a fomat as follows
   socket.on('reciveOrder', function (data) {
   $scope.recivedOrder= data;
-    $scope.names.push(data[0].name);
-      $scope.recivedOrder.splice(0, 1);
+    // $scope.names.push(data[0].name);
+    //   $scope.recivedOrder.splice(0, 1);
       $scope.Orders.push(data);
       console.log($scope.Orders)
     console.log('recived  order');
@@ -104,7 +104,7 @@ var menuToOrderes = function (data) {
      + pad(d.getMinutes()) + "\n";
      data[0] = data[0] + " ----- " + "Ordered @ " + s;
      $scope.usersOrders.push(data);
-     console.log($scope.usersOrders[0]);
+     console.log($scope.usersOrders[0].name);
 }
 // TODO 
 // remove the order from the collection.

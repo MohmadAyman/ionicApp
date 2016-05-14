@@ -179,8 +179,7 @@ app.controller('solrCreatorCtrl',function($scope,$timeout,socket) {
     name: 'Shawrma',
     price: '5'
   }];
-  Facets.menu = [{name: 'sandwitches' ,menu: sandwitches},{name: 'Pizza' ,menu: pizza},
-  {name: 'Sori' ,menu: sori},{name: 'Drinks' ,menu: drinks}];
+  Facets.menu = [{name: 'sandwitches' ,menu: sandwitches}];
 
 
   $scope.placeOrder = function() {
